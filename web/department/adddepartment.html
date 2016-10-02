@@ -1,0 +1,73 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    
+    <title>School Manager</title>
+
+    <link href="/bootstrap/css/bootstrap.css" rel="stylesheet">
+    <link href="/bootstrap/css/bootstrap-responsive.css" rel="stylesheet">
+
+
+  </head>
+  <body>
+
+    <section class="jumbotron">
+      <div class="container">
+        <div class="row text-center">
+          <h1>School Manager</h1>
+          <h2>Department</h2>
+          <h4>Enter Department Information:</h4>
+          <form id="departmentForm">
+
+            <fieldset class="form-group">
+              <label for="departmentName">Department Name</label>
+              <input type="text" class="form-control" id="departmentName" name="departmentName" placeholder="Mathematics">
+            </fieldset>
+            <fieldset class="form-group">
+              <label for="courseID">Course ID's</label>
+              <input type="text" class="form-control" id="courseID" name="courseID" placeholder="12345, 23456, 142344">
+            </fieldset>
+            </fieldset>
+            <fieldset class="form-group">
+              <label for="idNumber">Department ID</label>
+              <input type="text" class="form-control" id="idNumber" name="idNumber" placeholder="12356">
+            </fieldset>
+
+
+            <button id="submit" type="submit" class="btn btn-primary">Submit</button>
+          </form>
+        </div>
+      </div>
+    </section>
+
+    <script src="http://ajax.googleapis.com/ajax/libs/jquery/1.11.3/jquery.min.js"></script>
+    <script src="bootstrap/js/bootstrap.min.js"></script>
+       <script type="text/javascript">
+      $('#studentForm').submit(function() {
+         var frm = $(this);
+         var arr = eval(JSON.stringify(frm.serializeArray())); 
+         var dat = {};
+         for entry in arr {
+          dat[entry['name']] = entry['value']
+         }
+         // alert(eval(dat)[0]['name'])
+
+
+         // alert("I am about to POST this:\n\n" + dat);
+
+         $.ajax({
+             type: "POST",
+             url: "/api/student",
+             data: JSON.stringify(dat),
+             success: function(){},
+             dataType: "json",
+             contentType : "application/json"
+         });
+      });   
+   </script>
+  </body>
+</html>
+

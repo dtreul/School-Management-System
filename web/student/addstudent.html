@@ -1,0 +1,102 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    
+    <title>School Manager</title>
+
+    <link href="/bootstrap/css/bootstrap.css" rel="stylesheet">
+    <link href="/bootstrap/css/bootstrap-responsive.css" rel="stylesheet">
+
+
+  </head>
+  <body>
+
+    <section class="jumbotron">
+      <div class="container">
+        <div class="row text-center">
+          <h1>School Manager</h1>
+          <h2>Student</h2>
+          <h4>Enter Student Information:</h4>
+          <form id="studentForm" name="studentForm" method="POST">
+
+            <fieldset class="form-group">
+              <label for="firstName">First Name</label>
+              <input type="text" class="form-control" id="firstName" name="firstName" placeholder="John">
+            </fieldset>
+            <fieldset class="form-group">
+              <label for="lastName">Last Name</label>
+              <input type="text" class="form-control" id="lastName" name="lastName" placeholder="Doe">
+            </fieldset>
+            </fieldset>
+            <fieldset class="form-group">
+              <label for="idNumber">ID Number</label>
+              <input type="text" class="form-control" id="idNumber" name="idNumber" placeholder="12356">
+            </fieldset>
+            </fieldset>
+            <fieldset class="form-group">
+              <label for="department">Department ID</label>
+              <input type="text" class="form-control" id="department" name="department" placeholder="14">
+            </fieldset>
+            </fieldset>
+            <fieldset class="form-group">
+              <label for="phone">Phone Number</label>
+              <input type="text" class="form-control" id="phone" name="phone" placeholder="123-123-1234">
+            </fieldset>
+            <fieldset class="form-group">
+              <label for="street">Street</label>
+              <input type="text" class="form-control" id="street" name="street" placeholder="123 Main St. Apt 1234">
+            </fieldset>
+            <fieldset class="form-group">
+              <label for="city">City</label>
+              <input type="text" class="form-control" id="city" name="city" placeholder="Los Angeles">
+            </fieldset>
+            <fieldset class="form-group">
+              <label for="state">State</label>
+              <input type="text" class="form-control" id="state" name="state" placeholder="California">
+            </fieldset>
+            <fieldset class="form-group">
+              <label for="zipcode">Zip Code</label>
+              <input type="text" class="form-control" id="zipcode" name="zipcode" placeholder="92081">
+            </fieldset>
+            <fieldset class="form-group">
+              <label for="units">Units</label>
+              <input type="text" class="form-control" id="units" name="units" placeholder="24">
+            </fieldset>
+
+            <button id="submit" type="submit" class="btn btn-primary">Submit</button>
+          </form>
+        </div>
+      </div>
+    </section>
+
+    <script src="http://ajax.googleapis.com/ajax/libs/jquery/1.11.3/jquery.min.js"></script>
+    <script src="bootstrap/js/bootstrap.min.js"></script>
+       <script type="text/javascript">
+      $('#studentForm').submit(function() {
+         var frm = $(this);
+         var arr = eval(JSON.stringify(frm.serializeArray())); 
+         var dat = {};
+         for entry in arr {
+          dat[entry['name']] = entry['value']
+         }
+         alert(dat)
+
+
+         // alert("I am about to POST this:\n\n" + dat);
+
+         $.ajax({
+             type: "POST",
+             url: "/api/student",
+             data: JSON.stringify(dat),
+             success: function(){},
+             dataType: "json",
+             contentType : "application/json"
+         });
+      });   
+   </script>
+  </body>
+</html>
+

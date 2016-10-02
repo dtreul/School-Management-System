@@ -1,0 +1,58 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    
+    <title>School Manager</title>
+
+    <link href="/bootstrap/css/bootstrap.css" rel="stylesheet">
+    <link href="/bootstrap/css/bootstrap-responsive.css" rel="stylesheet">
+
+
+  </head>
+  <body>
+
+    <section class="jumbotron">
+      <div class="container">
+        <div class="row text-center">
+          <h1>School Manager</h1>
+          <h2>Quarter</h2>
+          <h4>Add Quarter Information: (NOTE: WILL OVERWRITE ANY EXISTING QUARTER)</h4>
+          <form method="POST">
+            <fieldset class="form-group">
+              <label for="year">Year</label>
+              <select class="form-control" id="year" name="year">
+
+              </select>
+            </fieldset>
+            <fieldset class="form-group">
+              <label for="term">Select Term</label>
+              <select class="form-control" id="term" name="term">
+                <option>Fall</option>
+                <option>Winter</option>
+                <option>Spring</option>
+                <option>Summer</option>
+              </select>
+            </fieldset>
+            <button type="submit" class="btn btn-primary">Submit</button>
+          </form>
+        </div>
+      </div>
+    </section>
+
+    <script src="http://ajax.googleapis.com/ajax/libs/jquery/1.11.3/jquery.min.js"></script>
+    <script type="text/javascript">
+      var start = new Date().getFullYear() + 8;
+      var end = 1960;
+      var options = "";
+      for(var year = start ; year >=end; year--){
+        options += "<option>"+ year +"</option>";
+      }
+      document.getElementById("year").innerHTML = options;
+    </script>
+    <script src="bootstrap/js/bootstrap.min.js"></script>
+  </body>
+</html>
+
